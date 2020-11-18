@@ -1,0 +1,211 @@
+<!-----05211940000029_Iqbal Dzakwan Imaduddin----->
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Registrasi</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src=https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js></script>
+    <script src=https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/additional-methods.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <!-- Bagian registrasi ini disusun oleh: Iqbal Dzakwan Imaduddin-->
+</head>
+
+<body>
+<style>
+    @import url("https://fonts.googleapis.com/css?family=Open+Sans");
+
+    /* Styles */
+    * {
+     margin: 0;
+     padding: 0;
+     max-width:100%;
+    }
+
+    body {
+     font-family: "Open Sans";
+     font-size: 14px;
+     max-width:100%;
+     background-image: url("https://harianmomentum.com/images/media/artikel/aa2a2c72eb2f0f99a5e215ecb0b4b943.png");
+     background-repeat: no-repeat;
+     background-attachment: fixed;  
+     background-size: 100% 100%;
+    }
+
+    .container {
+     width: 500px;
+      margin: 25px auto;
+      max-width:100%;
+    }
+    .infobox {
+    margin-top : 5px;
+    border-radius: 5px;
+    }
+
+    .submit { 
+    margin-top: 15px;
+    height : 30px;
+    border-radius: 5px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    }
+
+    form {
+     padding: 20px;
+     background: #5bc0de;
+     color: #fff;
+     -moz-border-radius: 4px;
+     -webkit-border-radius: 4px;
+     border-radius: 4px;
+     max-width:100%;
+    }
+    form label,
+    form input,
+    form button {
+     border: 0;
+     margin-bottom: 3px;
+     display: block;
+     width: 100%;
+     max-width:100%;
+    }
+    form input {
+     height: 25px;
+     line-height: 25px;
+     background: #fff;
+     color: #000;
+     padding: 0 6px;
+     -moz-box-sizing: border-box;
+     -webkit-box-sizing: border-box;
+      box-sizing: border-box;
+      max-width:100%;
+    }
+    form button {
+     height: 30px;
+     line-height: 30px;
+     background: #f7f302;
+     color: black;
+     margin-top: 10px;
+     cursor: pointer;
+     max-width:100%;
+    }
+    form .error {
+    color: #ff0000;
+    max-width:100%;
+    }
+</style>
+
+<div class="container">
+  <h2>Registrasi</h2>
+  <form action="" name="registration" autocomplete="off">
+      
+  <label for="name">Nama</label>
+  <input type="text" class="infobox" name="name" id="name" placeholder="Iqbal"/>
+  <p></p>    
+  <label for="email">Email</label>
+  <input type="email" class="infobox" name="email" id="email" placeholder="iqbal@gmail.com"/>
+  <p></p>
+  <label for="dob">Tanggal Lahir</label>
+  <input type="date" class="infobox" name="dob" id="dob">
+  <p></p>
+  <label for="noMeter">ID Pelanggan</label>
+  <input type="text" class="infobox" name="noMeter" id="noMeter" placeholder="1234567890">
+    <p></p>
+
+  <label for="daya">Daya</label>
+  <div class="row">
+    <div class="form-check form-check-inline col-sm" >
+      <label class="form-check-label text-center">450 VA
+      <input class="form-check-input" type="radio" name="options" id="option1">
+      </label>
+      
+      <label class="form-check-label text-center">900 VA
+      <input class="form-check-input" type="radio" name="options" id="option2"> 
+      </label>
+
+      <label class="form-check-label text-center">1300 VA
+      <input class="form-check-input" type="radio" name="options" id="option3"> 
+      </label>
+
+      <label class="form-check-label text-center">2200 VA
+      <input class="form-check-input" type="radio" name="options" id="option4"> 
+      </label>
+
+    </div>
+  </div>
+
+  <label>Pilihan pembayaran</label>
+  <select class="custom-select" id="inputGroup" required name="pembayaran">
+    <option value="">Pilih...</option>
+    <option value="1">Transfer Bank</option>
+    <option value="2">Linkaja</option>
+    <option value="3">OVO</option>
+    <option value="4">DANA</option>
+    <option value="5">GOPAY</option>
+  </select>
+
+  <button class="submit" type="submit">Register</button>
+      
+  </form>
+</div>
+
+<script>
+
+  $.validator.addMethod("minAge", function(value, element, min) {
+    var today = new Date();
+    var birthDate = new Date(value);
+    var age = today.getFullYear() - birthDate.getFullYear();
+      if (age > min+1) { return true; }
+    var m = today.getMonth() - birthDate.getMonth();
+      if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) { age--; }
+      return age >= min;
+    }, "You are not old enough!");
+
+  $(function() {
+    $("form[name='registration']").validate({
+      rules: {
+        name: "required",
+        email: {
+          required: true,
+          email: true,
+        },
+        dob: {
+          required: true,
+          minAge: 17
+        },
+        noMeter: {
+          required: true,
+          number: true
+        },
+        options: {
+          required: true
+        },
+      },
+      messages: {
+        name: "Masukkan nama",
+        email: "Masukkan email yang valid",
+        dob: {
+          required: "Masukkan tanggal lahir",
+          minAge: "Umur minimal 17 tahun"
+        },
+        noMeter: {
+          required: "Masukkan ID Pelanggan",
+          number: "Masukkan ID Pelanggan yang valid"
+        },
+        options: "Pilih daya",
+        pembayaran: "Pilih metode pembayaran"
+      },
+      submitHandler: function(form) {
+          form.submit();
+        }
+        });
+    });
+</script>
+<!-- source registration template: https://www.sitepoint.com/basic-jquery-form-validation-tutorial/ -->
+<!-- date of birth picker source: https://www.jqueryscript.net/time-clock/Customizable-Dropdown-Birthday-Picker-Plugin-with-jQuery.html-->
+</body>
+</html>
